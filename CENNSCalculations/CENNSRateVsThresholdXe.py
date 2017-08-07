@@ -1,7 +1,7 @@
 import ReactorSpectra
 from CrossSection import dSigdEr 
 from CrossSection import dSigIBD
-from NEST_ionization import NESTCharge
+from NESTYields import NESTCharge
 from NEST_ionization import NESTChargeLow
 from NEST_ionization import NESTChargeHi
 from MathLib import TrapIntegral
