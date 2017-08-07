@@ -60,16 +60,27 @@ class ReactorSpectra:
     return exp( power )
 
 
+  ########################################################
+  # spectrum in neutrinos/MeV/fission
+  def SpectrumU238( self, energy ):
+    power = 0.976 * energy ** 0 +\
+           -0.162 * energy ** 1 +\
+           -0.079 * energy ** 2  
+    return exp( power )
+
+
   #######################################################
   # 
   def ComputeSpectrumWeightFactors( self ):
     Power5 = self.reactorPower * self.MeVperJoule * self.alpha_5
     Power9 = self.reactorPower * self.MeVperJoule * self.alpha_9
     Power1 = self.reactorPower * self.MeVperJoule * self.alpha_1
+    Power8 = self.reactorPower * self.MeVperJoule * self.alpha_8
    
     self.Nfiss5 = Power5 / self.Ef5 
     self.Nfiss9 = Power9 / self.Ef9
     self.Nfiss1 = Power1 / self.Ef1
+    self.Nfiss8 = Power8 / self.Ef8
 
   
   #######################################################
@@ -79,8 +90,10 @@ class ReactorSpectra:
     self.u235 = self.SpectrumU235( energy ) * self.Nfiss5
     self.p241 = self.SpectrumP241( energy ) * self.Nfiss1
     self.p239 = self.SpectrumP239( energy ) * self.Nfiss9
+    self.u238 = self.SpectrumU238( energy ) * self.Nfiss8
 
-    self.fullSpectrum = self.u235 + self.p241 + self.p239
+    self.fullSpectrum = self.u235 + self.p241 +\
+                        self.p239 + self.u238
   
      
   

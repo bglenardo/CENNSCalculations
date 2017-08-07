@@ -51,3 +51,26 @@ class ArgonDetector:
     surfaceArea = (self.distance*100)**2 * 4 * 3.1415927 #cm^2
     self.fluxFactor = 1./surfaceArea # cm^-2
     self.solidAngleFraction = (self.height * 100 * self.width * 100) / surfaceArea
+
+
+class GeDetector:
+  isotopes = {
+    '70':0.2038,
+    '72':0.2731,
+    '73':0.0776,
+    '74':0.3672,
+    '76':0.0786,    
+  }
+
+  def __init__( self ):
+    self.distance = 100
+    self.mass = 1000
+    self.height = 1
+    self.width = 1
+    self.ComputeSolidAngleFraction()
+
+  def ComputeSolidAngleFraction( self ):
+    surfaceArea = (self.distance*100)**2 * 4 * 3.1415927 #cm^2
+    self.fluxFactor = 1./surfaceArea # cm^-2
+    self.solidAngleFraction = (self.height * 100 * self.width * 100) / surfaceArea
+    
